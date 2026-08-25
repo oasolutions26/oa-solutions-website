@@ -99,9 +99,13 @@ export default function Contact() {
 
           <div className="glass-card rounded-2xl p-8 md:p-10">
             {status === 'success' ? (
-              <div className="flex h-full flex-col items-center justify-center py-12 text-center">
+              <div
+                role="status"
+                aria-live="polite"
+                className="flex h-full flex-col items-center justify-center py-12 text-center"
+              >
                 <div className="flex h-16 w-16 items-center justify-center rounded-full border border-accent-500/30 bg-accent-500/10 text-accent-400">
-                  <svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
@@ -179,7 +183,10 @@ export default function Contact() {
                 </div>
 
                 {status === 'error' && (
-                  <p className="rounded-lg border border-red-500/20 bg-red-500/10 px-4 py-3 text-sm text-red-300">
+                  <p
+                    role="alert"
+                    className="rounded-lg border border-red-500/20 bg-red-500/10 px-4 py-3 text-sm text-red-300"
+                  >
                     {errorMessage}
                   </p>
                 )}

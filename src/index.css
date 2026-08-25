@@ -35,6 +35,27 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+@media (max-width: 767px) {
+  body {
+    padding-bottom: 4.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .glass-card:hover,
+  .btn-primary:hover {
+    transform: none;
+  }
+
+  .animate-pulse {
+    animation: none;
+  }
+}
+
 .font-display {
   font-family: var(--font-display);
 }

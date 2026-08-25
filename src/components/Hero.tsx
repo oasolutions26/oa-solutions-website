@@ -10,7 +10,7 @@ export default function Hero() {
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <div className="max-w-3xl">
             <p className="badge mb-6 inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-sm font-medium">
-              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-accent-400" />
+              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-accent-400" aria-hidden="true" />
               Built exclusively for restaurants
             </p>
 
@@ -34,19 +34,23 @@ export default function Hero() {
                 Start a Project
               </a>
               <a
-                href="#services"
+                href="#work"
                 className="btn-secondary inline-flex items-center justify-center rounded-full px-8 py-3.5 text-base"
               >
-                Explore Services
+                See Our Work
               </a>
             </div>
           </div>
 
           <div className="relative flex justify-center lg:justify-end">
-            <div className="absolute inset-0 rounded-3xl bg-accent-glow/10 blur-3xl" />
+            <div className="absolute inset-0 rounded-3xl bg-accent-glow/10 blur-3xl" aria-hidden="true" />
             <img
-              src="/logo.png"
-              alt="OA Solutions"
+              src="/logo-hero.webp"
+              alt=""
+              width={480}
+              height={480}
+              fetchPriority="high"
+              decoding="async"
               className="relative w-full max-w-md md:max-w-lg"
               style={{ filter: 'drop-shadow(0 0 40px rgba(0, 102, 255, 0.25))' }}
             />
@@ -57,13 +61,13 @@ export default function Hero() {
 
         <div className="mt-10 grid grid-cols-2 gap-6 md:grid-cols-4">
           {[
-            { value: 'Websites', label: 'Beautiful & fast' },
-            { value: 'Apps', label: 'Custom-built for you' },
-            { value: 'Reservations', label: 'Bookings made easy' },
-            { value: 'AI Phone', label: 'Never miss a call' },
+            { value: '24hr', label: 'Response time' },
+            { value: '2', label: 'Direct phone lines' },
+            { value: '100%', label: 'Restaurant-focused' },
+            { value: 'Yours', label: 'Code & credentials' },
           ].map((stat) => (
             <div
-              key={stat.value}
+              key={stat.value + stat.label}
               className="rounded-xl border border-accent-500/10 bg-dark-800/50 px-4 py-5 text-center"
             >
               <p className="font-display text-xl font-bold text-accent-400 md:text-2xl">
