@@ -5,6 +5,7 @@ const navLinks = [
   { label: 'Work', href: '#work' },
   { label: 'Why Us', href: '#why-us' },
   { label: 'Process', href: '#process' },
+  { label: 'FAQ', href: '#faq' },
   { label: 'Contact', href: '#contact' },
 ]
 
@@ -36,7 +37,7 @@ export default function Navbar() {
           />
         </a>
 
-        <ul className="hidden items-center gap-8 md:flex">
+        <ul className="hidden items-center gap-6 lg:flex xl:gap-8">
           {navLinks.map((link) => (
             <li key={link.href}>
               <a
@@ -62,7 +63,7 @@ export default function Navbar() {
           aria-label={open ? 'Close menu' : 'Open menu'}
           aria-expanded={open}
           aria-controls={menuId}
-          className="flex h-10 w-10 items-center justify-center rounded-lg border border-accent-500/15 text-silver-300 md:hidden"
+          className="flex h-10 w-10 items-center justify-center rounded-lg border border-accent-500/15 text-silver-300 lg:hidden"
           onClick={() => setOpen((v) => !v)}
         >
           <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
@@ -78,7 +79,7 @@ export default function Navbar() {
       <div
         id={menuId}
         hidden={!open}
-        className="border-t border-accent-500/10 bg-dark-950 px-6 py-4 md:hidden"
+        className="border-t border-accent-500/10 bg-dark-950 px-6 py-4 lg:hidden"
       >
         <ul className="flex flex-col gap-4">
           {navLinks.map((link) => (

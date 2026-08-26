@@ -42,7 +42,9 @@ export default function Footer() {
               { label: 'Work', href: '#work' },
               { label: 'Why Us', href: '#why-us' },
               { label: 'Process', href: '#process' },
+              { label: 'FAQ', href: '#faq' },
               { label: 'Contact', href: '#contact' },
+              { label: 'Privacy', href: '#privacy' },
             ].map((link) => (
               <a
                 key={link.href}
