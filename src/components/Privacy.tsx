@@ -1,4 +1,9 @@
+import { CONTACT } from '../lib/contact'
+
 export default function Privacy() {
+  const usesPlausible = Boolean(import.meta.env.VITE_PLAUSIBLE_DOMAIN?.trim())
+  const usesGa = Boolean(import.meta.env.VITE_GA_MEASUREMENT_ID?.trim())
+
   return (
     <section id="privacy" className="border-t border-accent-500/10 bg-dark-950 py-16 md:py-20">
       <div className="mx-auto max-w-3xl px-6">
@@ -17,10 +22,27 @@ export default function Privacy() {
             We do not sell your information. We use it only to communicate about your project.
           </p>
           <p>
+            When you book a discovery call, you are redirected to Google Calendar (hosted on{' '}
+            {CONTACT.email}). Google&apos;s privacy policy applies to information you enter on
+            their booking page.
+          </p>
+          {(usesPlausible || usesGa) && (
+            <p>
+              We use privacy-conscious analytics
+              {usesPlausible && usesGa
+                ? ' (Plausible and Google Analytics)'
+                : usesPlausible
+                  ? ' (Plausible)'
+                  : ' (Google Analytics)'}
+              {' '}to understand site traffic and improve the experience. Analytics data is
+              aggregated and does not include the contents of your contact form message.
+            </p>
+          )}
+          <p>
             We retain inquiry details as long as needed to follow up on your request or maintain
             a business relationship. You may ask us to delete your information by emailing{' '}
-            <a href="mailto:OASolutions26@gmail.com" className="text-accent-400 hover:text-accent-300">
-              OASolutions26@gmail.com
+            <a href={`mailto:${CONTACT.email}`} className="text-accent-400 hover:text-accent-300">
+              {CONTACT.email}
             </a>
             .
           </p>

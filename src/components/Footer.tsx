@@ -1,4 +1,5 @@
 import { CONTACT } from '../lib/contact'
+import TrackedPhoneLink from './TrackedPhoneLink'
 
 export default function Footer() {
   const year = new Date().getFullYear()
@@ -25,13 +26,13 @@ export default function Footer() {
                 {CONTACT.email}
               </a>
               {CONTACT.phones.map((phone) => (
-                <a
+                <TrackedPhoneLink
                   key={phone.tel}
-                  href={`tel:${phone.tel}`}
+                  tel={phone.tel}
+                  display={phone.display}
+                  source="footer"
                   className="transition-colors hover:text-accent-400"
-                >
-                  {phone.display}
-                </a>
+                />
               ))}
             </div>
           </div>
