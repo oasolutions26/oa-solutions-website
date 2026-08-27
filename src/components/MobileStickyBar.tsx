@@ -1,4 +1,7 @@
 import { CONTACT } from '../lib/contact'
+import { hasBooking } from '../lib/booking'
+import BookCallLink from './BookCallLink'
+import TrackedPhoneLink from './TrackedPhoneLink'
 
 export default function MobileStickyBar() {
   const primary = CONTACT.phones[0]
@@ -9,19 +12,20 @@ export default function MobileStickyBar() {
       style={{ paddingBottom: 'max(0.75rem, env(safe-area-inset-bottom))' }}
     >
       <div className="mx-auto flex max-w-6xl gap-3">
-        <a
-          href={`tel:${primary.tel}`}
+        <TrackedPhoneLink
+          tel={primary.tel}
+          display={primary.display}
+          source="mobile_sticky_bar"
           className="btn-secondary inline-flex flex-1 items-center justify-center rounded-full py-3 text-sm"
-          aria-label={`Call ${primary.display}`}
         >
           Call
-        </a>
-        <a
-          href="#contact"
+        </TrackedPhoneLink>
+        <BookCallLink
+          source="mobile_sticky_bar"
           className="btn-primary inline-flex flex-1 items-center justify-center rounded-full py-3 text-sm"
         >
-          Get a Quote
-        </a>
+          {hasBooking ? 'Book call' : 'Get a Quote'}
+        </BookCallLink>
       </div>
     </div>
   )

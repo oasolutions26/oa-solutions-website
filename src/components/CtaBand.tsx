@@ -1,3 +1,5 @@
+import BookCallLink from './BookCallLink'
+
 export default function CtaBand() {
   return (
     <section className="relative bg-dark-950 py-16 md:py-20" aria-labelledby="cta-band-heading">
@@ -11,12 +13,15 @@ export default function CtaBand() {
           Ready to stop losing covers to missed calls?
         </h2>
         <p className="mx-auto mt-3 max-w-xl text-lg text-silver-400">
-          15-minute discovery call. Clear next steps. No hard sell.
+          30-minute discovery call. Clear next steps. No hard sell.
         </p>
         <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-          <a href="#contact" className="btn-primary rounded-full px-8 py-3.5 text-base">
+          <BookCallLink
+            source="cta_band"
+            className="btn-primary rounded-full px-8 py-3.5 text-base"
+          >
             Book a discovery call
-          </a>
+          </BookCallLink>
           <a href="#work" className="btn-secondary rounded-full px-8 py-3.5 text-base">
             See recent work
           </a>

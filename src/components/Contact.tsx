@@ -1,5 +1,9 @@
 import { useState, type FormEvent } from 'react'
 import { CONTACT, sendContact } from '../lib/contact'
+import { BOOKING_ACCOUNT_EMAIL, hasBooking } from '../lib/booking'
+import { trackEvent } from '../lib/analytics'
+import BookCallLink from './BookCallLink'
+import TrackedPhoneLink from './TrackedPhoneLink'
 
 export default function Contact() {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
@@ -19,6 +23,7 @@ export default function Contact() {
     })
 
     if (result.ok) {
+      trackEvent('contact_form_submit')
       setStatus('success')
       e.currentTarget.reset()
     } else {
@@ -42,6 +47,22 @@ export default function Contact() {
               Whether you need a new website, online reservations, an AI phone system, or something
               entirely custom — we&apos;d love to hear about your project.
             </p>
+
+            {hasBooking && (
+              <div className="mt-8 rounded-2xl border border-accent-500/20 bg-accent-500/5 p-6">
+                <p className="font-medium text-white">Prefer to pick a time?</p>
+                <p className="mt-2 text-sm leading-relaxed text-silver-400">
+                  Book a 30-minute discovery call on our Google Calendar — hosted on{' '}
+                  {BOOKING_ACCOUNT_EMAIL}.
+                </p>
+                <BookCallLink
+                  source="contact_card"
+                  className="btn-primary mt-4 inline-flex rounded-full px-6 py-3 text-sm"
+                >
+                  Schedule on Google Calendar
+                </BookCallLink>
+              </div>
+            )}
 
             <div className="mt-10 space-y-6">
               <div className="flex items-start gap-4">
@@ -71,13 +92,13 @@ export default function Contact() {
                   <p className="font-medium text-white">Phone</p>
                   <div className="space-y-1">
                     {CONTACT.phones.map((phone) => (
-                      <a
+                      <TrackedPhoneLink
                         key={phone.tel}
-                        href={`tel:${phone.tel}`}
+                        tel={phone.tel}
+                        display={phone.display}
+                        source="contact_section"
                         className="block text-accent-400 transition-colors hover:text-accent-300"
-                      >
-                        {phone.display}
-                      </a>
+                      />
                     ))}
                   </div>
                 </div>
@@ -113,6 +134,14 @@ export default function Contact() {
                 <p className="mt-2 text-silver-400">
                   Thank you for reaching out. We&apos;ll get back to you within 24 hours.
                 </p>
+                {hasBooking && (
+                  <BookCallLink
+                    source="contact_success"
+                    className="btn-secondary mt-6 inline-flex rounded-full px-6 py-2.5 text-sm"
+                  >
+                    Or book a call now
+                  </BookCallLink>
+                )}
                 <button
                   type="button"
                   onClick={() => setStatus('idle')}
@@ -198,6 +227,18 @@ export default function Contact() {
                 >
                   {status === 'loading' ? 'Sending...' : 'Send Message'}
                 </button>
+
+                {hasBooking && (
+                  <p className="text-center text-sm text-silver-500">
+                    Rather talk live?{' '}
+                    <BookCallLink
+                      source="contact_form_footer"
+                      className="text-accent-400 hover:text-accent-300"
+                    >
+                      Book a discovery call
+                    </BookCallLink>
+                  </p>
+                )}
 
                 <p className="text-center text-xs leading-relaxed text-silver-500">
                   By submitting, you agree we may use your details to respond to your inquiry.{' '}

@@ -1,4 +1,5 @@
 import SkipLink from './components/SkipLink'
+import Analytics from './components/Analytics'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import Services from './components/Services'
@@ -18,6 +19,7 @@ import MobileStickyBar from './components/MobileStickyBar'
 export default function App() {
   return (
     <>
+      <Analytics />
       <SkipLink />
       <Navbar />
       <main id="main">
