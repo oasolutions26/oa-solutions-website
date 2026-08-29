@@ -1,6 +1,15 @@
 import { useEffect, useId, useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 
-const navLinks = [
+const homeNavLinks = [
+  { label: 'About', href: '#about' },
+  { label: 'Services', href: '#services' },
+  { label: 'Industries', href: '#industries' },
+  { label: 'Process', href: '#process' },
+  { label: 'Contact', href: '#contact' },
+]
+
+const industryNavLinks = [
   { label: 'Services', href: '#services' },
   { label: 'Work', href: '#work' },
   { label: 'Why Us', href: '#why-us' },
@@ -9,9 +18,15 @@ const navLinks = [
   { label: 'Contact', href: '#contact' },
 ]
 
-export default function Navbar() {
+type NavbarProps = {
+  variant?: 'home' | 'industry'
+}
+
+export default function Navbar({ variant = 'home' }: NavbarProps) {
   const [open, setOpen] = useState(false)
   const menuId = useId()
+  const location = useLocation()
+  const navLinks = variant === 'home' ? homeNavLinks : industryNavLinks
 
   useEffect(() => {
     if (!open) return
@@ -24,10 +39,14 @@ export default function Navbar() {
     return () => document.removeEventListener('keydown', onKeyDown)
   }, [open])
 
+  useEffect(() => {
+    setOpen(false)
+  }, [location.pathname])
+
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-accent-500/10 bg-dark-950/80 backdrop-blur-xl">
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4" aria-label="Primary">
-        <a href="#" className="group flex items-center">
+        <Link to="/" className="group flex items-center">
           <img
             src="/logo.webp"
             alt="OA Solutions — Technology, Automation, Digital Solutions"
@@ -35,9 +54,19 @@ export default function Navbar() {
             height={56}
             className="h-12 w-auto md:h-14"
           />
-        </a>
+        </Link>
 
         <ul className="hidden items-center gap-6 lg:flex xl:gap-8">
+          {variant === 'industry' && (
+            <li>
+              <Link
+                to="/"
+                className="text-sm font-medium text-silver-400 transition-colors hover:text-accent-400"
+              >
+                Home
+              </Link>
+            </li>
+          )}
           {navLinks.map((link) => (
             <li key={link.href}>
               <a
@@ -82,6 +111,17 @@ export default function Navbar() {
         className="border-t border-accent-500/10 bg-dark-950 px-6 py-4 lg:hidden"
       >
         <ul className="flex flex-col gap-4">
+          {variant === 'industry' && (
+            <li>
+              <Link
+                to="/"
+                className="block text-sm font-medium text-silver-400 hover:text-accent-400"
+                onClick={() => setOpen(false)}
+              >
+                Home
+              </Link>
+            </li>
+          )}
           {navLinks.map((link) => (
             <li key={link.href}>
               <a

@@ -1,13 +1,8 @@
-const integrations = [
-  { name: 'POS systems', detail: 'When your provider exposes an API' },
-  { name: 'OpenTable / Resy', detail: 'Booking flow handoffs' },
-  { name: 'Google Business', detail: 'Hours, menus, and local SEO' },
-  { name: 'Stripe / Square', detail: 'Payments and online ordering' },
-  { name: 'DoorDash / Uber Eats', detail: 'Menu sync where supported' },
-  { name: 'Your existing stack', detail: 'We map it in discovery first' },
-]
+import { useIndustry } from '../context/IndustryContext'
 
 export default function Integrations() {
+  const { integrations } = useIndustry()
+
   return (
     <section id="integrations" className="relative bg-dark-950 py-16 md:py-20">
       <div className="mx-auto max-w-6xl px-6">
@@ -16,12 +11,11 @@ export default function Integrations() {
           Built to work with the tools you already use
         </h2>
         <p className="mx-auto mt-3 max-w-2xl text-center text-sm leading-relaxed text-silver-400">
-          We only promise integrations we can deliver. Discovery maps your POS, reservations,
-          and delivery stack before we quote.
+          {integrations.subtitle}
         </p>
 
         <ul className="mt-10 flex flex-wrap items-center justify-center gap-3">
-          {integrations.map((item) => (
+          {integrations.items.map((item) => (
             <li
               key={item.name}
               title={item.detail}

@@ -8,10 +8,24 @@ export const CONTACT = {
 
 export type ContactFormData = {
   name: string
-  restaurant: string
+  businessName: string
+  websiteUrl: string
   email: string
+  phone: string
+  budget: string
   message: string
+  industry?: string
 }
+
+export const BUDGET_OPTIONS = [
+  { value: '', label: 'Select a range (optional)' },
+  { value: '500-1000', label: '$500 – $1,000' },
+  { value: '1000-2000', label: '$1,000 – $2,000' },
+  { value: '2000-5000', label: '$2,000 – $5,000' },
+  { value: '5000-10000', label: '$5,000 – $10,000' },
+  { value: '10000-20000', label: '$10,000 – $20,000' },
+  { value: 'not-sure', label: 'Not sure yet' },
+] as const
 
 export type SendContactResult =
   | { ok: true }
@@ -27,7 +41,7 @@ export async function sendContact(data: ContactFormData): Promise<SendContactRes
     }
   }
 
-  const subject = `New inquiry from ${data.name}${data.restaurant ? ` — ${data.restaurant}` : ''}`
+  const subject = `New inquiry from ${data.name}${data.businessName ? ` — ${data.businessName}` : ''}${data.industry ? ` (${data.industry})` : ''}`
 
   const response = await fetch('https://api.web3forms.com/submit', {
     method: 'POST',
@@ -41,7 +55,14 @@ export async function sendContact(data: ContactFormData): Promise<SendContactRes
       from_name: data.name,
       email: data.email,
       name: data.name,
-      restaurant: data.restaurant || 'Not provided',
+      business_name: data.businessName || 'Not provided',
+      website_url: data.websiteUrl || 'Not provided',
+      phone: data.phone || 'Not provided',
+      expected_budget:
+        BUDGET_OPTIONS.find((option) => option.value === data.budget)?.label ||
+        data.budget ||
+        'Not provided',
+      industry: data.industry || 'Not specified',
       message: data.message,
     }),
   })

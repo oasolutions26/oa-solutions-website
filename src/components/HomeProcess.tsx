@@ -1,23 +1,49 @@
-import { useIndustry } from '../context/IndustryContext'
+const steps = [
+  {
+    number: '01',
+    title: 'Discovery Call',
+    description:
+      'Tell us about your business, your goals, and what is not working today. No jargon — just a real conversation.',
+  },
+  {
+    number: '02',
+    title: 'Custom Proposal',
+    description:
+      'We design a solution tailored to your needs and budget, with clear timelines and no surprises.',
+  },
+  {
+    number: '03',
+    title: 'Design & Build',
+    description:
+      'Our team brings your vision to life with regular updates and your feedback at every stage.',
+  },
+  {
+    number: '04',
+    title: 'Launch & Support',
+    description:
+      'We deploy, train your team, and stay available for updates, maintenance, and new features.',
+  },
+]
 
-export default function Process() {
-  const { process } = useIndustry()
-
+export default function HomeProcess() {
   return (
-    <section id="process" className="section-alt relative py-24 md:py-32">
+    <section id="process" className="relative bg-dark-950 py-24 md:py-32">
       <div className="relative mx-auto max-w-6xl px-6">
         <div className="text-center">
           <p className="section-label">How It Works</p>
           <h2 className="font-display mt-3 text-4xl font-bold tracking-tight text-white md:text-5xl">
             From idea to launch in four steps
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-silver-400">{process.subtitle}</p>
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-silver-400">
+            A straightforward process designed for busy business owners who want results, not
+            runaround.
+          </p>
         </div>
 
         <div className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-          {process.steps.map((step, index) => (
+          {steps.map((step, index) => (
             <div key={step.number} className="relative">
-              {index < process.steps.length - 1 && (
+              {index < steps.length - 1 && (
                 <div className="absolute top-8 left-[calc(50%+2rem)] hidden h-px w-[calc(100%-4rem)] bg-gradient-to-r from-accent-500/40 to-transparent lg:block" />
               )}
               <div className="text-center">

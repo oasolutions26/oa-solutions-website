@@ -1,26 +1,19 @@
 import { CONTACT } from '../lib/contact'
-
-const proofs = [
-  {
-    title: 'Restaurant-only focus',
-    detail:
-      'We do not build generic marketing sites. Every engagement starts from covers, rush, and staff workflow.',
-  },
-  {
-    title: 'Direct access',
-    detail: `Call ${CONTACT.phones.map((p) => p.display).join(' or ')} — you reach the people building your project.`,
-  },
-  {
-    title: '24-hour response',
-    detail: 'Inquiries get a real reply within one business day, with clear next steps — not a ticket queue.',
-  },
-  {
-    title: 'You own the work',
-    detail: 'Source, domains, and credentials are yours at handoff. No hostage hosting or lock-in contracts.',
-  },
-]
+import { useIndustry } from '../context/IndustryContext'
 
 export default function Testimonials() {
+  const { testimonials } = useIndustry()
+
+  const proofs = testimonials.proofs.map((proof) => {
+    if (proof.title === 'Direct access') {
+      return {
+        ...proof,
+        detail: `Call ${CONTACT.phones.map((p) => p.display).join(' or ')} — you reach the people building your project.`,
+      }
+    }
+    return proof
+  })
+
   return (
     <section id="proof" className="relative bg-dark-950 py-24 md:py-32" aria-labelledby="proof-heading">
       <div className="pointer-events-none absolute inset-0 grid-bg opacity-40" />

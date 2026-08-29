@@ -1,5 +1,4 @@
 import { CONTACT } from '../lib/contact'
-import { hasBooking } from '../lib/booking'
 import BookCallLink from './BookCallLink'
 import TrackedPhoneLink from './TrackedPhoneLink'
 
@@ -24,7 +23,7 @@ export default function MobileStickyBar() {
           source="mobile_sticky_bar"
           className="btn-primary inline-flex flex-1 items-center justify-center rounded-full py-3 text-sm"
         >
-          {hasBooking ? 'Book call' : 'Get a Quote'}
+          Book call
         </BookCallLink>
       </div>
     </div>

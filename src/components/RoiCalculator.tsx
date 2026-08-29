@@ -1,11 +1,15 @@
 import { useState } from 'react'
+import { useIndustry } from '../context/IndustryContext'
 
 const WEEKS_PER_YEAR = 50
 
 export default function RoiCalculator() {
+  const { roi } = useIndustry()
   const [missedCalls, setMissedCalls] = useState(8)
   const [avgCover, setAvgCover] = useState(75)
   const [conversionRate, setConversionRate] = useState(40)
+
+  if (!roi) return null
 
   const weekly = missedCalls * avgCover * (conversionRate / 100)
   const yearly = Math.round(weekly * WEEKS_PER_YEAR)
@@ -17,16 +21,14 @@ export default function RoiCalculator() {
       <div className="relative mx-auto max-w-3xl px-6">
         <p className="section-label">ROI snapshot</p>
         <h2 className="font-display mt-3 text-4xl font-bold tracking-tight text-white md:text-5xl">
-          What are missed calls costing you?
+          {roi.title}
         </h2>
-        <p className="mt-4 text-lg text-silver-400">
-          Rough estimate — adjust the sliders to match your restaurant.
-        </p>
+        <p className="mt-4 text-lg text-silver-400">{roi.subtitle}</p>
 
         <div className="glass-card mt-10 rounded-2xl p-6 md:p-8">
           <label className="block">
             <span className="text-sm font-medium text-silver-300">
-              Missed reservation calls per week:{' '}
+              {roi.missedLabel}:{' '}
               <span className="text-accent-400">{missedCalls}</span>
             </span>
             <input
@@ -43,9 +45,7 @@ export default function RoiCalculator() {
           </label>
 
           <label className="mt-8 block">
-            <span className="text-sm font-medium text-silver-300">
-              Average cover value ($)
-            </span>
+            <span className="text-sm font-medium text-silver-300">{roi.valueLabel}</span>
             <input
               type="number"
               min={20}
@@ -59,7 +59,7 @@ export default function RoiCalculator() {
 
           <label className="mt-8 block">
             <span className="text-sm font-medium text-silver-300">
-              Calls that would have booked (%):{' '}
+              {roi.conversionLabel}:{' '}
               <span className="text-accent-400">{conversionRate}%</span>
             </span>
             <input

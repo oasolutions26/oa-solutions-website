@@ -1,11 +1,27 @@
 import { useState, type FormEvent } from 'react'
-import { CONTACT, sendContact } from '../lib/contact'
-import { BOOKING_ACCOUNT_EMAIL, hasBooking } from '../lib/booking'
+import { BUDGET_OPTIONS, CONTACT, sendContact } from '../lib/contact'
+import { BOOKING_ACCOUNT_EMAIL } from '../lib/booking'
 import { trackEvent } from '../lib/analytics'
 import BookCallLink from './BookCallLink'
 import TrackedPhoneLink from './TrackedPhoneLink'
 
-export default function Contact() {
+type ContactProps = {
+  title?: string
+  subtitle?: string
+  businessFieldLabel?: string
+  businessFieldPlaceholder?: string
+  emailPlaceholder?: string
+  industry?: string
+}
+
+export default function Contact({
+  title = 'Ready to modernize your business?',
+  subtitle = 'Whether you need a website, custom application, or something entirely custom — we would love to hear about your project.',
+  businessFieldLabel = 'Business Name',
+  businessFieldPlaceholder = 'Your business',
+  emailPlaceholder = 'you@yourbusiness.com',
+  industry,
+}: ContactProps = {}) {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [errorMessage, setErrorMessage] = useState('')
 
@@ -15,11 +31,20 @@ export default function Contact() {
     setErrorMessage('')
 
     const formData = new FormData(e.currentTarget)
+    let websiteUrl = ((formData.get('websiteUrl') as string) || '').trim()
+    if (websiteUrl && !/^https?:\/\//i.test(websiteUrl)) {
+      websiteUrl = `https://${websiteUrl}`
+    }
+
     const result = await sendContact({
       name: (formData.get('name') as string).trim(),
-      restaurant: ((formData.get('restaurant') as string) || '').trim(),
+      businessName: ((formData.get('businessName') as string) || '').trim(),
+      websiteUrl,
       email: (formData.get('email') as string).trim(),
+      phone: ((formData.get('phone') as string) || '').trim(),
+      budget: ((formData.get('budget') as string) || '').trim(),
       message: (formData.get('message') as string).trim(),
+      industry,
     })
 
     if (result.ok) {
@@ -41,28 +66,23 @@ export default function Contact() {
           <div>
             <p className="section-label">Get in Touch</p>
             <h2 className="font-display mt-3 text-4xl font-bold tracking-tight text-white md:text-5xl">
-              Ready to modernize your restaurant?
+              {title}
             </h2>
-            <p className="mt-4 text-lg leading-relaxed text-silver-400">
-              Whether you need a new website, online reservations, an AI phone system, or something
-              entirely custom — we&apos;d love to hear about your project.
-            </p>
+            <p className="mt-4 text-lg leading-relaxed text-silver-400">{subtitle}</p>
 
-            {hasBooking && (
-              <div className="mt-8 rounded-2xl border border-accent-500/20 bg-accent-500/5 p-6">
-                <p className="font-medium text-white">Prefer to pick a time?</p>
-                <p className="mt-2 text-sm leading-relaxed text-silver-400">
-                  Book a 30-minute discovery call on our Google Calendar — hosted on{' '}
-                  {BOOKING_ACCOUNT_EMAIL}.
-                </p>
-                <BookCallLink
-                  source="contact_card"
-                  className="btn-primary mt-4 inline-flex rounded-full px-6 py-3 text-sm"
-                >
-                  Schedule on Google Calendar
-                </BookCallLink>
-              </div>
-            )}
+            <div className="mt-8 rounded-2xl border border-accent-500/20 bg-accent-500/5 p-6">
+              <p className="font-medium text-white">Prefer to pick a time?</p>
+              <p className="mt-2 text-sm leading-relaxed text-silver-400">
+                Book a 30-minute discovery call on our Google Calendar — hosted on{' '}
+                {BOOKING_ACCOUNT_EMAIL}.
+              </p>
+              <BookCallLink
+                source="contact_card"
+                className="btn-primary mt-4 inline-flex rounded-full px-6 py-3 text-sm"
+              >
+                Schedule on Google Calendar
+              </BookCallLink>
+            </div>
 
             <div className="mt-10 space-y-6">
               <div className="flex items-start gap-4">
@@ -134,14 +154,12 @@ export default function Contact() {
                 <p className="mt-2 text-silver-400">
                   Thank you for reaching out. We&apos;ll get back to you within 24 hours.
                 </p>
-                {hasBooking && (
-                  <BookCallLink
-                    source="contact_success"
-                    className="btn-secondary mt-6 inline-flex rounded-full px-6 py-2.5 text-sm"
-                  >
-                    Or book a call now
-                  </BookCallLink>
-                )}
+                <BookCallLink
+                  source="contact_success"
+                  className="btn-secondary mt-6 inline-flex rounded-full px-6 py-2.5 text-sm"
+                >
+                  Or book a call now
+                </BookCallLink>
                 <button
                   type="button"
                   onClick={() => setStatus('idle')}
@@ -168,16 +186,32 @@ export default function Contact() {
                 </div>
 
                 <div>
-                  <label htmlFor="restaurant" className="mb-1.5 block text-sm font-medium text-silver-300">
-                    Restaurant Name
+                  <label htmlFor="businessName" className="mb-1.5 block text-sm font-medium text-silver-300">
+                    {businessFieldLabel}
                   </label>
                   <input
-                    id="restaurant"
-                    name="restaurant"
+                    id="businessName"
+                    name="businessName"
                     type="text"
                     disabled={status === 'loading'}
                     className="w-full rounded-lg border border-accent-500/10 bg-dark-800 px-4 py-3 text-white placeholder-silver-500 outline-none transition-colors focus:border-accent-500/40 focus:ring-1 focus:ring-accent-500/20 disabled:opacity-50"
-                    placeholder="Your restaurant"
+                    placeholder={businessFieldPlaceholder}
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="websiteUrl" className="mb-1.5 block text-sm font-medium text-silver-300">
+                    Website URL <span className="text-silver-500">(optional)</span>
+                  </label>
+                  <input
+                    id="websiteUrl"
+                    name="websiteUrl"
+                    type="text"
+                    inputMode="url"
+                    autoComplete="url"
+                    disabled={status === 'loading'}
+                    className="w-full rounded-lg border border-accent-500/10 bg-dark-800 px-4 py-3 text-white placeholder-silver-500 outline-none transition-colors focus:border-accent-500/40 focus:ring-1 focus:ring-accent-500/20 disabled:opacity-50"
+                    placeholder="https://yourbusiness.com"
                   />
                 </div>
 
@@ -192,8 +226,44 @@ export default function Contact() {
                     required
                     disabled={status === 'loading'}
                     className="w-full rounded-lg border border-accent-500/10 bg-dark-800 px-4 py-3 text-white placeholder-silver-500 outline-none transition-colors focus:border-accent-500/40 focus:ring-1 focus:ring-accent-500/20 disabled:opacity-50"
-                    placeholder="you@restaurant.com"
+                    placeholder={emailPlaceholder}
                   />
+                </div>
+
+                <div className="grid gap-5 sm:grid-cols-2">
+                  <div>
+                    <label htmlFor="phone" className="mb-1.5 block text-sm font-medium text-silver-300">
+                      Phone Number
+                    </label>
+                    <input
+                      id="phone"
+                      name="phone"
+                      type="tel"
+                      autoComplete="tel"
+                      disabled={status === 'loading'}
+                      className="w-full rounded-lg border border-accent-500/10 bg-dark-800 px-4 py-3 text-white placeholder-silver-500 outline-none transition-colors focus:border-accent-500/40 focus:ring-1 focus:ring-accent-500/20 disabled:opacity-50"
+                      placeholder="(555) 123-4567"
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="budget" className="mb-1.5 block text-sm font-medium text-silver-300">
+                      Expected Budget
+                    </label>
+                    <select
+                      id="budget"
+                      name="budget"
+                      disabled={status === 'loading'}
+                      className="w-full rounded-lg border border-accent-500/10 bg-dark-800 px-4 py-3 text-white outline-none transition-colors focus:border-accent-500/40 focus:ring-1 focus:ring-accent-500/20 disabled:opacity-50"
+                      defaultValue=""
+                    >
+                      {BUDGET_OPTIONS.map((option) => (
+                        <option key={option.value || 'empty'} value={option.value}>
+                          {option.label}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
                 </div>
 
                 <div>
@@ -228,17 +298,15 @@ export default function Contact() {
                   {status === 'loading' ? 'Sending...' : 'Send Message'}
                 </button>
 
-                {hasBooking && (
-                  <p className="text-center text-sm text-silver-500">
-                    Rather talk live?{' '}
-                    <BookCallLink
-                      source="contact_form_footer"
-                      className="text-accent-400 hover:text-accent-300"
-                    >
-                      Book a discovery call
-                    </BookCallLink>
-                  </p>
-                )}
+                <p className="text-center text-sm text-silver-500">
+                  Rather talk live?{' '}
+                  <BookCallLink
+                    source="contact_form_footer"
+                    className="text-accent-400 hover:text-accent-300"
+                  >
+                    Book a discovery call
+                  </BookCallLink>
+                </p>
 
                 <p className="text-center text-xs leading-relaxed text-silver-500">
                   By submitting, you agree we may use your details to respond to your inquiry.{' '}

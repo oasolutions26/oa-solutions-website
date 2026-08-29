@@ -1,7 +1,8 @@
-import { faqs } from '../lib/faqs'
 import { useId, useState } from 'react'
+import { useIndustry } from '../context/IndustryContext'
 
 export default function Faq() {
+  const { faqs } = useIndustry()
   const baseId = useId()
   const [open, setOpen] = useState<number | null>(0)
 

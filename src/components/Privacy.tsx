@@ -14,7 +14,8 @@ export default function Privacy() {
 
         <div className="mt-8 space-y-6 text-sm leading-relaxed text-silver-400">
           <p>
-            When you submit the contact form, we collect your name, email, restaurant name (if
+            When you submit the contact form, we collect your name, email, phone number (if
+            provided), business name (if provided), website URL (if provided), expected budget (if
             provided), and message so we can respond to your inquiry.
           </p>
           <p>

@@ -1,7 +1,11 @@
 import HeroProductVisual from './HeroProductVisual'
+import GenericHeroVisual from './GenericHeroVisual'
 import Reveal from './Reveal'
+import { useIndustry } from '../context/IndustryContext'
 
 export default function Hero() {
+  const { hero } = useIndustry()
+
   return (
     <section className="hero-glow grid-bg relative overflow-hidden bg-dark-950 pt-32 pb-24 md:pt-40 md:pb-32">
       <div className="pointer-events-none absolute inset-0">
@@ -15,19 +19,17 @@ export default function Hero() {
             <div className="max-w-3xl">
               <p className="badge mb-6 inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-sm font-medium">
                 <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-accent-400" aria-hidden="true" />
-                Built exclusively for restaurants
+                {hero.badge}
               </p>
 
               <h1 className="font-display text-5xl leading-[1.08] font-bold tracking-tight text-white md:text-6xl lg:text-7xl">
-                Technology that keeps your{' '}
-                <span className="gradient-text">tables full</span> and your
-                operations running
+                {hero.title}{' '}
+                <span className="gradient-text">{hero.titleHighlight}</span>{' '}
+                {hero.visualType === 'restaurant' ? 'and your operations running' : ''}
               </h1>
 
               <p className="mt-6 max-w-2xl text-lg leading-relaxed text-silver-400 md:text-xl">
-                OA Solutions partners with restaurants to build websites, custom applications,
-                online reservation systems, AI phone answering, and whatever your business needs
-                to thrive in a digital world.
+                {hero.subtitle}
               </p>
 
               <div className="mt-10 flex flex-col gap-4 sm:flex-row">
@@ -50,7 +52,7 @@ export default function Hero() {
           <Reveal delay={120}>
             <div className="relative flex justify-center lg:justify-end">
               <div className="absolute inset-0 rounded-3xl bg-accent-glow/10 blur-3xl" aria-hidden="true" />
-              <HeroProductVisual />
+              {hero.visualType === 'restaurant' ? <HeroProductVisual /> : <GenericHeroVisual />}
             </div>
           </Reveal>
         </div>
@@ -58,12 +60,7 @@ export default function Hero() {
         <div className="glow-line mt-16" />
 
         <div className="mt-10 grid grid-cols-2 gap-6 md:grid-cols-4">
-          {[
-            { value: '24hr', label: 'Response time' },
-            { value: '2', label: 'Direct phone lines' },
-            { value: '100%', label: 'Restaurant-focused' },
-            { value: 'Yours', label: 'Code & credentials' },
-          ].map((stat, i) => (
+          {hero.stats.map((stat, i) => (
             <Reveal key={stat.value + stat.label} delay={i * 60}>
               <div className="rounded-xl border border-accent-500/10 bg-dark-800/50 px-4 py-5 text-center">
                 <p className="font-display text-xl font-bold text-accent-400 md:text-2xl">
