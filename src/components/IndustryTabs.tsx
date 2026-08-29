@@ -3,10 +3,10 @@ import { industries } from '../content/industries'
 
 export default function IndustryTabs() {
   return (
-    <div className="sticky top-[73px] z-40 border-b border-accent-500/10 bg-dark-950/95 backdrop-blur-xl">
+    <div className="sticky top-20 z-40 border-b border-accent-500/10 bg-dark-950/95 backdrop-blur-xl">
       <div className="mx-auto max-w-6xl px-6">
         <nav
-          className="-mb-px flex gap-1 overflow-x-auto py-3 scrollbar-none"
+          className="-mb-px flex flex-wrap gap-2 py-3 md:flex-nowrap md:gap-1 md:overflow-x-auto md:scroll-tabs md:scrollbar-none"
           aria-label="Industries"
         >
           {industries.map((industry) => (

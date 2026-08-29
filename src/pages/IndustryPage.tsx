@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { Navigate, useParams } from 'react-router-dom'
 import { getIndustry } from '../content/industries'
 import { IndustryProvider } from '../context/IndustryContext'
@@ -24,6 +25,13 @@ export default function IndustryPage() {
   const { slug } = useParams<{ slug: string }>()
   const industry = slug ? getIndustry(slug) : null
 
+  useEffect(() => {
+    document.documentElement.dataset.industryPage = 'true'
+    return () => {
+      delete document.documentElement.dataset.industryPage
+    }
+  }, [])
+
   if (!industry) {
     return <Navigate to="/" replace />
   }
@@ -34,7 +42,7 @@ export default function IndustryPage() {
       <SkipLink />
       <Navbar variant="industry" />
       <IndustryTabs />
-      <main id="main">
+      <main id="main" className="pb-20 md:pb-0">
         <Hero />
         <Services />
         <Integrations />

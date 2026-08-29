@@ -17,7 +17,7 @@ export default function HomePage() {
       <Analytics />
       <SkipLink />
       <Navbar variant="home" />
-      <main id="main">
+      <main id="main" className="pb-20 md:pb-0">
         <HomeHero />
         <HomeAbout />
         <HomeServices />

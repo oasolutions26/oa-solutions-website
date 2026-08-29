@@ -31,7 +31,7 @@ export default function Footer({ variant = 'home' }: FooterProps) {
         ]
 
   return (
-    <footer className="border-t border-accent-500/10 bg-dark-950 py-12 pb-28 md:pb-12">
+    <footer className="border-t border-accent-500/10 bg-dark-950 py-12 pb-12">
       <div className="mx-auto max-w-6xl px-6">
         <div className="glow-line mb-8" />
 

@@ -24,8 +24,24 @@
   --color-silver-500: #64748b;
 }
 
+:root {
+  --site-header-height: 5rem;
+  --industry-tabs-height: 3.25rem;
+}
+
 html {
-  scroll-behavior: smooth;
+  overflow-x: clip;
+  scroll-padding-top: var(--site-header-height);
+}
+
+html[data-industry-page] {
+  scroll-padding-top: calc(var(--site-header-height) + var(--industry-tabs-height));
+}
+
+@media (min-width: 768px) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 body {
@@ -33,12 +49,23 @@ body {
   color: var(--color-silver-300);
   background-color: var(--color-dark-950);
   -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
 }
 
-@media (max-width: 767px) {
-  body {
-    padding-bottom: 4.5rem;
-  }
+/* Prevent iOS overscroll chaining on horizontal tab strips */
+.scroll-tabs {
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
