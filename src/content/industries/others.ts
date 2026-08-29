@@ -66,7 +66,7 @@ export const smallBusiness: IndustryContent = {
       'OA Solutions builds websites, custom applications, booking systems, and AI tools for small businesses — so you can compete with bigger players without the enterprise price tag.',
     stats: [
       { value: '24hr', label: 'Response time' },
-      { value: '2', label: 'Direct phone lines' },
+      { value: '1', label: 'Direct phone line' },
       { value: '100%', label: 'Custom-built' },
       { value: 'Yours', label: 'Code & credentials' },
     ],
@@ -223,7 +223,7 @@ export const shops: IndustryContent = {
       'OA Solutions helps retail shops build online stores, inventory tools, loyalty programs, and point-of-sale integrations — bridging your physical and digital presence.',
     stats: [
       { value: '24hr', label: 'Response time' },
-      { value: '2', label: 'Direct phone lines' },
+      { value: '1', label: 'Direct phone line' },
       { value: '100%', label: 'Retail-focused' },
       { value: 'Yours', label: 'Code & credentials' },
     ],
@@ -365,7 +365,7 @@ export const freelancers: IndustryContent = {
       'OA Solutions builds portfolio sites, client portals, booking systems, and invoicing tools for freelancers — so you spend less time on admin and more time on billable work.',
     stats: [
       { value: '24hr', label: 'Response time' },
-      { value: '2', label: 'Direct phone lines' },
+      { value: '1', label: 'Direct phone line' },
       { value: '100%', label: 'Solo-friendly' },
       { value: 'Yours', label: 'Code & credentials' },
     ],
@@ -507,7 +507,7 @@ export const construction: IndustryContent = {
       'OA Solutions builds websites, quote calculators, job tracking tools, and client portals for construction companies — so you win more bids and run smoother jobs.',
     stats: [
       { value: '24hr', label: 'Response time' },
-      { value: '2', label: 'Direct phone lines' },
+      { value: '1', label: 'Direct phone line' },
       { value: '100%', label: 'Trade-focused' },
       { value: 'Yours', label: 'Code & credentials' },
     ],
@@ -649,7 +649,7 @@ export const clothing: IndustryContent = {
       'OA Solutions builds online stores, lookbooks, inventory systems, and brand websites for clothing businesses — from boutiques to emerging fashion labels.',
     stats: [
       { value: '24hr', label: 'Response time' },
-      { value: '2', label: 'Direct phone lines' },
+      { value: '1', label: 'Direct phone line' },
       { value: '100%', label: 'Fashion-focused' },
       { value: 'Yours', label: 'Code & credentials' },
     ],

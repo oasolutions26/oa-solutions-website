@@ -49,7 +49,7 @@ export default function HomeHero() {
         <div className="mt-10 grid grid-cols-2 gap-6 md:grid-cols-4">
           {[
             { value: '24hr', label: 'Response time' },
-            { value: '2', label: 'Direct phone lines' },
+            { value: '1', label: 'Direct phone line' },
             { value: '6+', label: 'Industries served' },
             { value: 'Yours', label: 'Code & credentials' },
           ].map((stat, i) => (

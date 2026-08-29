@@ -12,7 +12,7 @@ export const restaurants: IndustryContent = {
       'OA Solutions partners with restaurants to build websites, custom applications, online reservation systems, AI phone answering, and whatever your business needs to thrive in a digital world.',
     stats: [
       { value: '24hr', label: 'Response time' },
-      { value: '2', label: 'Direct phone lines' },
+      { value: '1', label: 'Direct phone line' },
       { value: '100%', label: 'Restaurant-focused' },
       { value: 'Yours', label: 'Code & credentials' },
     ],
