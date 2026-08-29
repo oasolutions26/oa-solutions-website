@@ -24,7 +24,7 @@ Open [http://localhost:5173](http://localhost:5173) in your browser.
 
 The contact form sends messages automatically to your email via [Web3Forms](https://web3forms.com) (free).
 
-1. Go to [web3forms.com](https://web3forms.com) and enter **OASolutions26@gmail.com**
+1. Go to [web3forms.com](https://web3forms.com) and enter **contact@oasolutions.dev**
 2. Copy the access key they email you
 3. Create a `.env.local` file in the project root:
 

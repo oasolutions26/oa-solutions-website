@@ -1,5 +1,5 @@
 export const CONTACT = {
-  email: 'OASolutions26@gmail.com',
+  email: 'contact@oasolutions.dev',
   phones: [
     { display: '647-854-3079', tel: '+16478543079' },
     { display: '416-817-7112', tel: '+14168177112' },
