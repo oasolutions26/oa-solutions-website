@@ -13,7 +13,7 @@ export default function HomeHero() {
           <div className="mx-auto max-w-4xl text-center">
             <p className="badge mb-6 inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-sm font-medium">
               <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-accent-400" aria-hidden="true" />
-              Technology, Automation, Digital Solutions
+              Custom Software Development · Ontario & Canada
             </p>
 
             <h1 className="font-display text-5xl leading-[1.08] font-bold tracking-tight text-white md:text-6xl lg:text-7xl">

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-CA">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -41,6 +41,33 @@
       content="Custom software development, web apps, CRM development & business automation for Ontario & Canada."
     />
     <meta name="twitter:image" content="https://oasolutions.dev/og-image.png" />
+
+    <!-- Static structured data for crawlers (React Helmet adds per-route data too) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "OA Solutions",
+        "url": "https://oasolutions.dev",
+        "description": "Custom software development, web application development, CRM development and business process automation for Ontario and Canada.",
+        "inLanguage": "en-CA"
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "OA Solutions",
+        "url": "https://oasolutions.dev",
+        "logo": "https://oasolutions.dev/logo.webp",
+        "description": "Custom software development company specializing in web applications, CRM development, and business process automation.",
+        "slogan": "Custom software development, web apps, CRM, and business automation",
+        "areaServed": {
+          "@type": "AdministrativeArea",
+          "name": "Ontario, Canada"
+        }
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

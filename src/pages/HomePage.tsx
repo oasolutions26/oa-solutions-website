@@ -1,7 +1,12 @@
 import PageSEO from '../components/PageSEO'
 import SkipLink from '../components/SkipLink'
 import Analytics from '../components/Analytics'
-import { homeMeta, localBusinessJsonLd, organizationJsonLd } from '../lib/seo'
+import {
+  homeMeta,
+  localBusinessJsonLd,
+  organizationJsonLd,
+  websiteJsonLd,
+} from '../lib/seo'
 import Navbar from '../components/Navbar'
 import HomeHero, { HomeAbout } from '../components/HomeHero'
 import HomeServices from '../components/HomeServices'
@@ -18,7 +23,7 @@ export default function HomePage() {
     <>
       <PageSEO
         {...homeMeta}
-        jsonLd={[organizationJsonLd(), localBusinessJsonLd()]}
+        jsonLd={[websiteJsonLd(), organizationJsonLd(), localBusinessJsonLd()]}
       />
       <Analytics />
       <SkipLink />

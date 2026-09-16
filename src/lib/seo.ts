@@ -58,6 +58,22 @@ export function getIndustryMeta(industry: IndustryContent): PageMeta {
   }
 }
 
+export function websiteJsonLd() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'OA Solutions',
+    url: SITE_URL,
+    description: homeMeta.description,
+    inLanguage: 'en-CA',
+    publisher: {
+      '@type': 'Organization',
+      name: SITE_NAME,
+      url: SITE_URL,
+    },
+  }
+}
+
 export function organizationJsonLd() {
   return {
     '@context': 'https://schema.org',
@@ -67,8 +83,8 @@ export function organizationJsonLd() {
     logo: `${SITE_URL}/logo.webp`,
     email: CONTACT.email,
     telephone: CONTACT.phones.map((p) => p.tel),
-    description:
-      'Software development company specializing in custom software, web application development, CRM development, and business process automation.',
+    description: homeMeta.description,
+    slogan: 'Custom software development, web apps, CRM, and business automation',
     areaServed: {
       '@type': 'AdministrativeArea',
       name: 'Ontario, Canada',
