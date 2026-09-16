@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://oasolutions.com/sitemap.xml
+Sitemap: https://oasolutions.dev/sitemap.xml

@@ -22,9 +22,9 @@ export default function HomeHero() {
             </h1>
 
             <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-silver-400 md:text-xl">
-              OA Solutions is an Ontario software development company for custom software
-              development, custom web application development, CRM development, and business process
-              automation — tailored to how you actually work.
+              OA Solutions is a custom software development company in Ontario. We deliver custom
+              web application development, CRM development, and business process automation for
+              businesses across Canada — scoped to how you actually work, with code you own.
             </p>
 
             <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">

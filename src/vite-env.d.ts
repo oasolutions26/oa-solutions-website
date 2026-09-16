@@ -1,6 +1,8 @@
 /// <reference types="vite/client" />
 
 interface ImportMetaEnv {
+  /** Canonical site origin, e.g. https://oasolutions.dev */
+  readonly VITE_SITE_URL: string
   readonly VITE_WEB3FORMS_ACCESS_KEY: string
   /** Public Google Calendar Appointment Schedule URL (from calendar.google.com) */
   readonly VITE_GOOGLE_CALENDAR_BOOKING_URL: string

@@ -1,52 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://oasolutions.com/</loc>
+    <loc>https://oasolutions.dev/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://oasolutions.com/services</loc>
+    <loc>https://oasolutions.dev/services</loc>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://oasolutions.com/about</loc>
+    <loc>https://oasolutions.dev/about</loc>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://oasolutions.com/contact</loc>
+    <loc>https://oasolutions.dev/contact</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://oasolutions.com/industries/restaurants</loc>
+    <loc>https://oasolutions.dev/industries/restaurants</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://oasolutions.com/industries/small-business</loc>
+    <loc>https://oasolutions.dev/industries/small-business</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://oasolutions.com/industries/shops</loc>
+    <loc>https://oasolutions.dev/industries/shops</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://oasolutions.com/industries/freelancers</loc>
+    <loc>https://oasolutions.dev/industries/freelancers</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://oasolutions.com/industries/construction</loc>
+    <loc>https://oasolutions.dev/industries/construction</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://oasolutions.com/industries/clothing</loc>
+    <loc>https://oasolutions.dev/industries/clothing</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>

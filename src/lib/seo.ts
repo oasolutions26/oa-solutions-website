@@ -1,7 +1,8 @@
 import type { IndustryContent } from '../content/types'
 import { CONTACT } from './contact'
 
-export const SITE_URL = 'https://oasolutions.com'
+const configuredSiteUrl = import.meta.env.VITE_SITE_URL?.trim()
+export const SITE_URL = configuredSiteUrl || 'https://oasolutions.dev'
 export const OG_IMAGE = `${SITE_URL}/og-image.png`
 export const SITE_NAME = 'OA Solutions'
 
@@ -19,7 +20,7 @@ export function absoluteUrl(path: string): string {
 export const homeMeta: PageMeta = {
   title: 'Custom Software Development Company | OA Solutions',
   description:
-    'Ontario software development company for custom software, web application development, CRM builds, and business process automation.',
+    'Custom software development, web application development, CRM development & business process automation for Ontario & Canada. Book a free discovery call.',
   path: '/',
 }
 
