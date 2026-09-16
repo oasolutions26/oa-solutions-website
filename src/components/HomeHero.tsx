@@ -17,14 +17,14 @@ export default function HomeHero() {
             </p>
 
             <h1 className="font-display text-5xl leading-[1.08] font-bold tracking-tight text-white md:text-6xl lg:text-7xl">
-              Custom technology that helps{' '}
+              Custom software development that helps{' '}
               <span className="gradient-text">your business grow</span>
             </h1>
 
             <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-silver-400 md:text-xl">
-              OA Solutions is a development partner for businesses across industries. We build
-              websites, custom applications, automation, AI tools, and integrations — tailored to
-              how you actually work.
+              OA Solutions is an Ontario software development company for custom software
+              development, custom web application development, CRM development, and business process
+              automation — tailored to how you actually work.
             </p>
 
             <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
@@ -85,9 +85,9 @@ export function HomeAbout() {
             </p>
             <p className="mt-4 text-lg leading-relaxed text-silver-400">
               Whether you run a restaurant, retail shop, construction company, or freelance practice,
-              we start by understanding your workflow, your customers, and your goals. Then we build
-              solutions that fit — websites, apps, booking systems, AI assistants, and whatever else
-              your business needs.
+              we start by understanding your workflow, your customers, and your goals. Then we
+              deliver custom software, web applications, CRM tools, and business process automation
+              that fit — plus websites, booking systems, and AI assistants when you need them.
             </p>
           </div>
 

@@ -7,33 +7,47 @@ type FooterProps = {
   variant?: 'home' | 'industry'
 }
 
+const homeFooterLinks = [
+  { label: 'About', to: '/about' },
+  { label: 'Services', to: '/services' },
+  { label: 'Industries', to: '/#industries' },
+  { label: 'Process', to: '/#process' },
+  { label: 'Contact', to: '/contact' },
+  { label: 'Privacy', to: '/#privacy' },
+]
+
 export default function Footer({ variant = 'home' }: FooterProps) {
   const year = new Date().getFullYear()
 
   const sectionLinks =
     variant === 'home'
-      ? [
-          { label: 'About', href: '#about' },
-          { label: 'Services', href: '#services' },
-          { label: 'Industries', href: '#industries' },
-          { label: 'Process', href: '#process' },
-          { label: 'Contact', href: '#contact' },
-          { label: 'Privacy', href: '#privacy' },
-        ]
+      ? homeFooterLinks
       : [
-          { label: 'Services', href: '#services' },
-          { label: 'Work', href: '#work' },
-          { label: 'Why Us', href: '#why-us' },
-          { label: 'Process', href: '#process' },
-          { label: 'FAQ', href: '#faq' },
-          { label: 'Contact', href: '#contact' },
-          { label: 'Privacy', href: '#privacy' },
+          { label: 'Services', to: '#services' },
+          { label: 'Work', to: '#work' },
+          { label: 'Why Us', to: '#why-us' },
+          { label: 'Process', to: '#process' },
+          { label: 'FAQ', to: '#faq' },
+          { label: 'Contact', to: '#contact' },
+          { label: 'Privacy', to: '#privacy' },
         ]
 
   return (
     <footer className="border-t border-accent-500/10 bg-dark-950 py-12 pb-12">
       <div className="mx-auto max-w-6xl px-6">
         <div className="glow-line mb-8" />
+
+        <div className="mb-8 flex flex-wrap gap-x-6 gap-y-2 text-sm">
+          <Link to="/services" className="text-silver-500 hover:text-accent-400">
+            All services
+          </Link>
+          <Link to="/about" className="text-silver-500 hover:text-accent-400">
+            About
+          </Link>
+          <Link to="/contact" className="text-silver-500 hover:text-accent-400">
+            Contact
+          </Link>
+        </div>
 
         <div className="mb-8">
           <p className="mb-4 text-sm font-medium text-silver-400">Industries</p>
@@ -55,10 +69,11 @@ export default function Footer({ variant = 'home' }: FooterProps) {
             <Link to="/">
               <img
                 src="/logo.webp"
-                alt="OA Solutions"
+                alt="OA Solutions — software development company"
                 width={120}
                 height={40}
                 className="h-10 w-auto"
+                loading="lazy"
               />
             </Link>
             <div className="flex flex-wrap justify-center gap-x-4 gap-y-1 text-sm text-silver-500 md:justify-start">
@@ -81,15 +96,25 @@ export default function Footer({ variant = 'home' }: FooterProps) {
           </div>
 
           <nav className="flex flex-wrap justify-center gap-6" aria-label="Footer">
-            {sectionLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="text-sm text-silver-500 transition-colors hover:text-accent-400"
-              >
-                {link.label}
-              </a>
-            ))}
+            {sectionLinks.map((link) =>
+              link.to.startsWith('#') ? (
+                <a
+                  key={link.label}
+                  href={link.to}
+                  className="text-sm text-silver-500 transition-colors hover:text-accent-400"
+                >
+                  {link.label}
+                </a>
+              ) : (
+                <Link
+                  key={link.label}
+                  to={link.to}
+                  className="text-sm text-silver-500 transition-colors hover:text-accent-400"
+                >
+                  {link.label}
+                </Link>
+              ),
+            )}
           </nav>
 
           <p className="text-sm text-silver-500">

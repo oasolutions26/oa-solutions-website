@@ -13,7 +13,11 @@ export default function HomeIndustries() {
           </h2>
           <p className="mt-4 text-lg leading-relaxed text-silver-400">
             We build industry-specific technology — not generic templates. Select your industry to
-            see what we can do for your business.
+            see case-style examples, services, and FAQs — then{' '}
+            <Link to="/contact" className="text-accent-400 hover:text-accent-300">
+              contact us
+            </Link>{' '}
+            when you are ready.
           </p>
         </div>
 

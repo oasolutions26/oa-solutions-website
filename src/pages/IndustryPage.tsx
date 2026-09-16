@@ -2,6 +2,12 @@ import { useEffect } from 'react'
 import { Navigate, useParams } from 'react-router-dom'
 import { getIndustry } from '../content/industries'
 import { IndustryProvider } from '../context/IndustryContext'
+import PageSEO from '../components/PageSEO'
+import {
+  faqPageJsonLd,
+  getIndustryMeta,
+  industryServicesJsonLd,
+} from '../lib/seo'
 import SkipLink from '../components/SkipLink'
 import Analytics from '../components/Analytics'
 import Navbar from '../components/Navbar'
@@ -36,8 +42,14 @@ export default function IndustryPage() {
     return <Navigate to="/" replace />
   }
 
+  const meta = getIndustryMeta(industry)
+
   return (
     <IndustryProvider content={industry}>
+      <PageSEO
+        {...meta}
+        jsonLd={[industryServicesJsonLd(industry), faqPageJsonLd(industry.faqs)]}
+      />
       <Analytics />
       <SkipLink />
       <Navbar variant="industry" />

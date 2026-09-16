@@ -1,25 +1,51 @@
 import { useEffect, useId, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 
-const homeNavLinks = [
-  { label: 'About', href: '#about' },
-  { label: 'Services', href: '#services' },
-  { label: 'Industries', href: '#industries' },
-  { label: 'Process', href: '#process' },
-  { label: 'Contact', href: '#contact' },
+type NavItem = { label: string; to: string }
+
+const homeNavLinks: NavItem[] = [
+  { label: 'About', to: '/about' },
+  { label: 'Services', to: '/services' },
+  { label: 'Industries', to: '/#industries' },
+  { label: 'Process', to: '/#process' },
+  { label: 'Contact', to: '/contact' },
 ]
 
-const industryNavLinks = [
-  { label: 'Services', href: '#services' },
-  { label: 'Work', href: '#work' },
-  { label: 'Why Us', href: '#why-us' },
-  { label: 'Process', href: '#process' },
-  { label: 'FAQ', href: '#faq' },
-  { label: 'Contact', href: '#contact' },
+const industryNavLinks: NavItem[] = [
+  { label: 'Services', to: '#services' },
+  { label: 'Work', to: '#work' },
+  { label: 'Why Us', to: '#why-us' },
+  { label: 'Process', to: '#process' },
+  { label: 'FAQ', to: '#faq' },
+  { label: 'Contact', to: '#contact' },
 ]
 
 type NavbarProps = {
   variant?: 'home' | 'industry'
+}
+
+function NavItemLink({
+  item,
+  className,
+  onClick,
+}: {
+  item: NavItem
+  className: string
+  onClick?: () => void
+}) {
+  if (item.to.startsWith('#')) {
+    return (
+      <a href={item.to} className={className} onClick={onClick}>
+        {item.label}
+      </a>
+    )
+  }
+
+  return (
+    <Link to={item.to} className={className} onClick={onClick}>
+      {item.label}
+    </Link>
+  )
 }
 
 export default function Navbar({ variant = 'home' }: NavbarProps) {
@@ -27,6 +53,7 @@ export default function Navbar({ variant = 'home' }: NavbarProps) {
   const menuId = useId()
   const location = useLocation()
   const navLinks = variant === 'home' ? homeNavLinks : industryNavLinks
+  const quoteLink = variant === 'home' ? '/contact' : '#contact'
 
   useEffect(() => {
     if (!open) return
@@ -59,10 +86,12 @@ export default function Navbar({ variant = 'home' }: NavbarProps) {
         <Link to="/" className="group flex items-center">
           <img
             src="/logo.webp"
-            alt="OA Solutions — Technology, Automation, Digital Solutions"
+            alt="OA Solutions — custom software development company"
             width={168}
             height={56}
             className="h-12 w-auto md:h-14"
+            loading="eager"
+            fetchPriority="high"
           />
         </Link>
 
@@ -77,23 +106,34 @@ export default function Navbar({ variant = 'home' }: NavbarProps) {
               </Link>
             </li>
           )}
-          {navLinks.map((link) => (
-            <li key={link.href}>
-              <a
-                href={link.href}
+          {variant === 'industry' && (
+            <li>
+              <Link
+                to="/services"
                 className="text-sm font-medium text-silver-400 transition-colors hover:text-accent-400"
               >
-                {link.label}
-              </a>
+                All Services
+              </Link>
+            </li>
+          )}
+          {navLinks.map((link) => (
+            <li key={link.label + link.to}>
+              <NavItemLink
+                item={link}
+                className="text-sm font-medium text-silver-400 transition-colors hover:text-accent-400"
+              />
             </li>
           ))}
           <li>
-            <a
-              href="#contact"
-              className="btn-primary rounded-full px-5 py-2.5 text-sm"
-            >
-              Get a Quote
-            </a>
+            {quoteLink.startsWith('#') ? (
+              <a href={quoteLink} className="btn-primary rounded-full px-5 py-2.5 text-sm">
+                Get a Quote
+              </a>
+            ) : (
+              <Link to={quoteLink} className="btn-primary rounded-full px-5 py-2.5 text-sm">
+                Get a Quote
+              </Link>
+            )}
           </li>
         </ul>
 
@@ -133,24 +173,32 @@ export default function Navbar({ variant = 'home' }: NavbarProps) {
             </li>
           )}
           {navLinks.map((link) => (
-            <li key={link.href}>
-              <a
-                href={link.href}
+            <li key={link.label + link.to}>
+              <NavItemLink
+                item={link}
                 className="block text-sm font-medium text-silver-400 hover:text-accent-400"
                 onClick={() => setOpen(false)}
-              >
-                {link.label}
-              </a>
+              />
             </li>
           ))}
           <li>
-            <a
-              href="#contact"
-              className="btn-primary inline-block rounded-full px-5 py-2.5 text-sm"
-              onClick={() => setOpen(false)}
-            >
-              Get a Quote
-            </a>
+            {quoteLink.startsWith('#') ? (
+              <a
+                href={quoteLink}
+                className="btn-primary inline-block rounded-full px-5 py-2.5 text-sm"
+                onClick={() => setOpen(false)}
+              >
+                Get a Quote
+              </a>
+            ) : (
+              <Link
+                to={quoteLink}
+                className="btn-primary inline-block rounded-full px-5 py-2.5 text-sm"
+                onClick={() => setOpen(false)}
+              >
+                Get a Quote
+              </Link>
+            )}
           </li>
         </ul>
       </div>
