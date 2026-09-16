@@ -18,9 +18,9 @@ export function absoluteUrl(path: string): string {
 }
 
 export const homeMeta: PageMeta = {
-  title: 'Custom Software Development Company | OA Solutions',
+  title: 'Custom Software & Web App Development | OA Solutions',
   description:
-    'Custom software development, web application development, CRM development & business process automation for Ontario & Canada. Book a free discovery call.',
+    'Custom software development company in Ontario & Canada — web apps, CRM development, integrations & business automation for small business. Free discovery call.',
   path: '/',
 }
 
@@ -85,6 +85,13 @@ export function organizationJsonLd() {
     telephone: CONTACT.phones.map((p) => p.tel),
     description: homeMeta.description,
     slogan: 'Custom software development, web apps, CRM, and business automation',
+    knowsAbout: [
+      'Custom software development',
+      'Web application development',
+      'CRM development',
+      'Business process automation',
+      'Software integrations',
+    ],
     areaServed: {
       '@type': 'AdministrativeArea',
       name: 'Ontario, Canada',
@@ -106,8 +113,7 @@ export function localBusinessJsonLd() {
       '@type': 'AdministrativeArea',
       name: 'Ontario, Canada',
     },
-    description:
-      'Custom software development and business automation services for businesses across Ontario and Canada.',
+    description: homeMeta.description,
   }
 }
 
